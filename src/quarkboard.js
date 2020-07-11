@@ -1,4 +1,5 @@
 const EventEmitter = require('events');
+const Plugin = require('quarkboard-plugin');
 
 class Quarkboard extends EventEmitter {
     constructor() {
@@ -86,3 +87,4 @@ class Quarkboard extends EventEmitter {
 }
 
 module.exports = new Quarkboard();
+module.exports.Plugin = Plugin;
