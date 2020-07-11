@@ -5,6 +5,7 @@ class Quarkboard extends EventEmitter {
     constructor() {
         super();
 
+        this._plugins = [];
     }
 
     /**
@@ -94,6 +95,25 @@ class Quarkboard extends EventEmitter {
             .create(opts)
             .bindHelp()
             .parseSystem();
+    }
+
+    /**
+     * Register a new plugin.
+     *
+     * @param plugin
+     * @param opts
+     * @returns {Quarkboard}
+     */
+    use(plugin, opts = undefined) {
+        if (!plugin instanceof Plugin) {
+            throw new TypeError(`Expected type Plugin but got ${typeof plugin} instead`);
+        }
+
+        if (!this.has(plugin)) {
+            this._plugins.push(new plugin(opts, this));
+        }
+
+        return this;
     }
 }
 
