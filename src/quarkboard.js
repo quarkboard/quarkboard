@@ -71,6 +71,22 @@ class Quarkboard extends EventEmitter {
         return Object.assign({}, this._opts);
     }
 
+    /**
+     * Return whether or not the {pluginType} is registered or not.
+     *
+     * @param plugin
+     * @returns {boolean}
+     */
+    has(plugin) {
+        for (const _plugin of this._plugins) {
+            if (plugin.name === _plugin.constructor.name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     run() {
         const opts = [
             ['h',   'help',         'print this help and exit'],
