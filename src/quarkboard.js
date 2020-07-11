@@ -5,21 +5,6 @@ class Quarkboard extends EventEmitter {
     constructor() {
         super();
 
-        const opts = [
-            ['h',   'help',         'print this help and exit'],
-            ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
-            ['v',   'verbose+',     'verbose output; -vv and -vvv to increase verbosity'],
-            ['V',   'version',      'print version and exit'],
-        ];
-
-        // TODO Load plugins and pass "this" so they can hook into events
-
-        // Fire the event so plugins can attach any options they need.
-        this.emit('_getopt', opts);
-        this._opts = require('node-getopt')
-            .create(opts)
-            .bindHelp()
-            .parseSystem();
     }
 
     /**
@@ -83,6 +68,32 @@ class Quarkboard extends EventEmitter {
      */
     get opts() {
         return Object.assign({}, this._opts);
+    }
+
+    run() {
+        const opts = [
+            ['h',   'help',         'print this help and exit'],
+            ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
+            ['v',   'verbose+',     'verbose output; -vv and -vvv to increase verbosity'],
+            ['V',   'version',      'print version and exit'],
+        ];
+
+        this._plugins.forEach((plugin) => {
+            this.emit('plugin-loading', plugin, opts);
+
+            this._opts = require('node-getopt')
+                .create(opts)
+                .parseSystem();
+
+            plugin.enabled && plugin.load();
+            this.emit('plugin-loaded', plugin);
+        });
+
+        // Fire the event so plugins can attach any options they need.
+        this._opts = require('node-getopt')
+            .create(opts)
+            .bindHelp()
+            .parseSystem();
     }
 }
 
