@@ -3,7 +3,8 @@
     "Ken Stanley <support@dohpaz.dev>"
   ],
   "dependencies": {
-    "node-getopt": "^0.3.2"
+    "node-getopt": "^0.3.2",
+    "quarkboard-plugin": "*"
   },
   "description": "Quarkboard is an open-source smart mirror framework that provides enterprise-level service for professionals and home-enthusiasts alike.",
   "devDependencies": {},
