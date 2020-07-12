@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@quarkboard/quarkboard-plugin@*":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@quarkboard/quarkboard-plugin/-/quarkboard-plugin-0.1.0.tgz#dff186d8fe89cb7ec5d2cbe360a915a071fbe36f"
+  integrity sha512-fuCIF9Z6v3n0bTNVBYjwIVPl1jGn3z0ETn6uU0b4l+r7WRMkW2utMYG4lN6BeBVyo/WJOjBzy9RcFCZWixv7/w==
+
 node-getopt@^0.3.2:
   version "0.3.2"
   resolved "https://registry.npmjs.org/node-getopt/-/node-getopt-0.3.2.tgz#57507cd22f6f69650aa99252304a842f1224e44c"
