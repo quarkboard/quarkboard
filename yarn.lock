@@ -7,6 +7,11 @@
   resolved "https://registry.npmjs.org/@quarkboard/quarkboard-plugin/-/quarkboard-plugin-0.1.0.tgz#dff186d8fe89cb7ec5d2cbe360a915a071fbe36f"
   integrity sha512-fuCIF9Z6v3n0bTNVBYjwIVPl1jGn3z0ETn6uU0b4l+r7WRMkW2utMYG4lN6BeBVyo/WJOjBzy9RcFCZWixv7/w==
 
+env-paths@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/env-paths/-/env-paths-2.2.0.tgz#cdca557dc009152917d6166e2febe1f039685e43"
+  integrity sha512-6u0VYSCo/OW6IoD5WCLLy9JUGARbamfSavcNXry/eu8aHVFei6CD3Sw+VGX5alea1i9pgPHW0mbu6Xj0uBh7gA==
+
 node-getopt@^0.3.2:
   version "0.3.2"
   resolved "https://registry.npmjs.org/node-getopt/-/node-getopt-0.3.2.tgz#57507cd22f6f69650aa99252304a842f1224e44c"
