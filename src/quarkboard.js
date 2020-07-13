@@ -8,6 +8,7 @@ class Quarkboard extends EventEmitter {
 
         this._config = new Hadron({
             defaults: {
+                plugins: [],
                 opts: [
                     ['h',   'help',         'print this help and exit'],
                     ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
@@ -105,22 +106,19 @@ class Quarkboard extends EventEmitter {
     }
 
     run() {
-        this._plugins.forEach((plugin) => {
-            this.emit('plugin-loading', plugin, opts);
+        const opts = this._config.get('opts');
 
-            this._opts = require('node-getopt')
-                .create(opts)
-                .parseSystem();
+        this._addPlugins(this._config.get('plugins', []));
 
-            plugin.enabled && plugin.load();
-            this.emit('plugin-loaded', plugin);
-        });
+        this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
-        // Fire the event so plugins can attach any options they need.
         this._opts = require('node-getopt')
             .create(opts)
             .bindHelp()
             .parseSystem();
+
+        this._plugins.forEach((plugin) => plugin.enabled && plugin.load());
+        this._plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
 
     /**
@@ -138,6 +136,26 @@ class Quarkboard extends EventEmitter {
         if (!this.has(plugin)) {
             this._plugins.push(new plugin(opts, this));
         }
+
+        return this;
+    }
+
+    /**
+     * Adds given plugins from the filesystem to the plugin stack.
+     *
+     * @param plugins
+     * @returns {Quarkboard}
+     * @private
+     */
+    _addPlugins(plugins) {
+        const path = require('path');
+
+        plugins.forEach((plugin) => {
+            const pjson = require(path.join(plugin, 'package.json'));
+            const pluginClass = require(path.join(plugin, pjson.main));
+
+            this.use(pluginClass);
+        });
 
         return this;
     }
