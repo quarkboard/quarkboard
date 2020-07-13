@@ -17,6 +17,13 @@ class Quarkboard extends EventEmitter {
             }
         });
         this._plugins = [];
+
+        this.on('exit', (message, code = 0) => {
+            if (typeof message !== 'undefined')
+                console.log(message);
+
+            process.exit(code)
+        });
     }
 
     /**
