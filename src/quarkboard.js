@@ -1,10 +1,21 @@
 const EventEmitter = require('events');
 const Plugin = require('@quarkboard/quarkboard-plugin');
+const Hadron = require('@quarkboard/hadron');
 
 class Quarkboard extends EventEmitter {
     constructor() {
         super();
 
+        this._config = new Hadron({
+            defaults: {
+                opts: [
+                    ['h',   'help',         'print this help and exit'],
+                    ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
+                    ['v',   'verbose+',     'verbose output; -vv and -vvv to increase verbosity'],
+                    ['V',   'version',      'print version and exit'],
+                ],
+            }
+        });
         this._plugins = [];
     }
 
@@ -87,13 +98,6 @@ class Quarkboard extends EventEmitter {
     }
 
     run() {
-        const opts = [
-            ['h',   'help',         'print this help and exit'],
-            ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
-            ['v',   'verbose+',     'verbose output; -vv and -vvv to increase verbosity'],
-            ['V',   'version',      'print version and exit'],
-        ];
-
         this._plugins.forEach((plugin) => {
             this.emit('plugin-loading', plugin, opts);
 
