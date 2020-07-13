@@ -20,5 +20,8 @@
   "main": "src/main.js",
   "name": "@quarkboard/quarkboard",
   "repository": "https://github.com/quarkboard/quarkboard.git",
+  "scripts": {
+    "start": "node src/main.js"
+  },
   "version": "0.1.0"
 }
