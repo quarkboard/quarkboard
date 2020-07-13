@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-const Plugin = require('quarkboard-plugin');
+const Plugin = require('@quarkboard/quarkboard-plugin');
 
 class Quarkboard extends EventEmitter {
     constructor() {
