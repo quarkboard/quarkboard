@@ -62,13 +62,8 @@ class Quarkboard extends EventEmitter {
         return this.isVerbose && this.opts.options.verbose.length >= 2;
     }
 
-    /**
-     * Return a copy of the getopt object.
-     *
-     * @returns {*}
-     */
-    get opts() {
-        return Object.assign({}, this._opts);
+    getOpt(option) {
+        return this._opts.options[option];
     }
 
     /**
@@ -85,6 +80,10 @@ class Quarkboard extends EventEmitter {
         }
 
         return false;
+    }
+
+    hasOpt(option) {
+        return typeof this._opts.options[option] !== 'undefined';
     }
 
     run() {
