@@ -128,7 +128,7 @@ class Quarkboard extends EventEmitter {
 
         this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
-        this._opts = require('node-getopt')
+        this._opts = getopt
             .create(opts)
             .error((error) => console.warn(`Warning: ${error.message}`))
             .bindHelp()
