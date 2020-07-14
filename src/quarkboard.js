@@ -129,11 +129,13 @@ class Quarkboard extends EventEmitter {
 
         this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
+        const that = this;
         this._opts = getopt
             .create(opts)
             .error(function (error) {
                 console.warn(`Error: ${error.message}\n`)
                 this.showHelp();
+                that.emit('exit', undefined, 1);
             })
             .bindHelp()
             .parseSystem();
