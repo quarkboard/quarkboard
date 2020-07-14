@@ -7,6 +7,8 @@ class Quarkboard extends EventEmitter {
         super();
 
         this._config = new Hadron({
+            projectName: 'Quarkboard',
+            projectSuffix: '',
             defaults: {
                 plugins: [],
                 opts: [
