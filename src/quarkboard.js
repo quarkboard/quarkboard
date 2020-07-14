@@ -138,6 +138,11 @@ class Quarkboard extends EventEmitter {
             .bindHelp()
             .parseSystem();
 
+        if (this._opts.options.version) {
+            const pjson = require('../package.json');
+            this.emit('exit', `Quarkboard v${pjson.version}`);
+        }
+
         this._plugins.forEach((plugin) => plugin.enabled && plugin.load());
         this._plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
