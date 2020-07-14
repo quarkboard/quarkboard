@@ -111,7 +111,7 @@ class Quarkboard extends EventEmitter {
     run() {
         const opts = this._config.get('opts');
 
-        this._addPlugins(this._config.get('plugins', []));
+        this._addPlugins(this._config.get('plugins', {}));
 
         this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
@@ -154,9 +154,10 @@ class Quarkboard extends EventEmitter {
     _addPlugins(plugins) {
         const path = require('path');
 
-        plugins.forEach((plugin) => {
-            const pjson = require(path.join(plugin, 'package.json'));
-            const pluginClass = require(path.join(plugin, pjson.main));
+        Object.keys(plugins).forEach((name) => {
+            const plugin = plugins[name];
+            const pjson = require(path.join(plugin.path, 'package.json'));
+            const pluginClass = require(path.join(plugin.path, pjson.main));
 
             this.use(pluginClass);
         });
