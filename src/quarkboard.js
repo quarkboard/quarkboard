@@ -10,10 +10,11 @@ class Quarkboard extends EventEmitter {
             defaults: {
                 plugins: [],
                 opts: [
-                    ['h',   'help',         'print this help and exit'],
-                    ['q',   'quiet',        'quiet output; -qq and -qqq to decrease verbosity'],
-                    ['v',   'verbose+',     'verbose output; -vv and -vvv to increase verbosity'],
-                    ['V',   'version',      'print version and exit'],
+                    ['h',   'help',             'print this help and exit'],
+                    ['p',   'plugin=PLUGIN+',   'Enable the named plugin; non-standard plugins must include plugin,/path/to/plugin'],
+                    ['q',   'quiet',            'quiet output; -qq and -qqq to decrease verbosity'],
+                    ['v',   'verbose+',         'verbose output; -vv and -vvv to increase verbosity'],
+                    ['V',   'version',          'print version and exit'],
                 ],
             }
         });
