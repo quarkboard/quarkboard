@@ -1,3 +1,4 @@
+const path = require('path');
 const EventEmitter = require('events');
 const Plugin = require('@quarkboard/quarkboard-plugin');
 const Hadron = require('@quarkboard/hadron');
@@ -109,9 +110,21 @@ class Quarkboard extends EventEmitter {
     }
 
     run() {
+        const getopt = require('node-getopt');
         const opts = this._config.get('opts');
+        const plugins = this._config.get('plugins', {});
 
-        this._addPlugins(this._config.get('plugins', {}));
+        // Parse any plugins provided by the command line.
+        for (const plugin of getopt.create(opts).parseSystem().options.plugin) {
+            const p = plugin.split(',');
+            plugins[p[0]] = {
+                path: typeof p[1] !== 'undefined' ? path.resolve(p[1]) : p[0],
+                enabled: true,
+                core: false,
+            }
+        }
+
+        this._addPlugins(plugins);
 
         this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
@@ -152,8 +165,6 @@ class Quarkboard extends EventEmitter {
      * @private
      */
     _addPlugins(plugins) {
-        const path = require('path');
-
         Object.keys(plugins).forEach((name) => {
             const plugin = plugins[name];
             const pjson = require(path.join(plugin.path, 'package.json'));
