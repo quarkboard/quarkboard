@@ -114,6 +114,7 @@ class Quarkboard extends EventEmitter {
 
         this._opts = require('node-getopt')
             .create(opts)
+            .error((error) => console.warn(`Warning: ${error.message}`))
             .bindHelp()
             .parseSystem();
 
