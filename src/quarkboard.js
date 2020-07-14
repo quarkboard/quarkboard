@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const EventEmitter = require('events');
 const Plugin = require('@quarkboard/quarkboard-plugin');
 const Hadron = require('@quarkboard/hadron');
@@ -167,7 +168,13 @@ class Quarkboard extends EventEmitter {
     _addPlugins(plugins) {
         Object.keys(plugins).forEach((name) => {
             const plugin = plugins[name];
-            const pjson = require(path.join(plugin.path, 'package.json'));
+            const pjsonFile = path.join(plugin.path, 'package.json');
+
+            if (!fs.existsSync(pjsonFile)) {
+                throw new Error(`Could not find package.json in '${plugin.path}', or path does not exist`);
+            }
+
+            const pjson = require(pjsonFile);
             const pluginClass = require(path.join(plugin.path, pjson.main));
 
             this.use(pluginClass);
