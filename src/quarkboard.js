@@ -133,7 +133,7 @@ class Quarkboard extends EventEmitter {
         this._opts = getopt
             .create(opts)
             .error(function (error) {
-                console.warn(`Error: ${error.message}\n`)
+                console.error(`Error: ${error.message}\n`)
                 this.showHelp();
                 that.emit('exit', undefined, 1);
             })
