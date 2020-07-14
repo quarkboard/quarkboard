@@ -116,7 +116,7 @@ class Quarkboard extends EventEmitter {
         const plugins = this._config.get('plugins', {});
 
         // Parse any plugins provided by the command line.
-        for (const plugin of getopt.create(opts).error(() => {}).parseSystem().options.plugin) {
+        for (const plugin of (getopt.create(opts).error(() => {}).parseSystem().options.plugin || [])) {
             const p = plugin.split(',');
             plugins[p[0]] = {
                 path: typeof p[1] !== 'undefined' ? path.resolve(p[1]) : p[0],
