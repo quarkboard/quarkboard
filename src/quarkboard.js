@@ -32,6 +32,10 @@ class Quarkboard extends EventEmitter {
         });
     }
 
+    get options() {
+        return Object.assign({}, this.opts.options);
+    }
+
     /**
      * Return whether or not output is debug (-vvv).
      *
@@ -84,10 +88,6 @@ class Quarkboard extends EventEmitter {
      */
     get isVeryVerbose() {
         return this.isVerbose && this.opts.options.verbose.length >= 2;
-    }
-
-    getOpt(option) {
-        return this._opts.options[option];
     }
 
     getConfig(key, def) {
