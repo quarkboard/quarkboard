@@ -106,6 +106,16 @@ class Quarkboard extends EventEmitter {
         return this._opts;
     }
 
+    debug(message, ...args) {
+        if (this.isDebug)
+            console.debug(message, ...args);
+    }
+
+    error(message, ...args) {
+        if (!this.isVeryQuiet)
+            console.error(message, ...args);
+    }
+
     /**
      * Return the value of {key} if it is defined, or {def} if it doesn't.
      *
@@ -141,6 +151,11 @@ class Quarkboard extends EventEmitter {
      */
     hasConfig(key) {
         return this._config.has(key);
+    }
+
+    info(message, ...args) {
+        if (!this.isQuiet)
+            console.info(message, ...args);
     }
 
     /**
