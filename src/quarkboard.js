@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const EventEmitter = require('events');
 const Plugin = require('@quarkboard/quarkboard-plugin');
+const Server = require('@quarkboard/quarkboard-server');
 const Hadron = require('@quarkboard/hadron');
 
 class Quarkboard extends EventEmitter {
@@ -134,6 +135,7 @@ class Quarkboard extends EventEmitter {
             }
         }
 
+        this.use(Server);
         this._addPlugins(plugins);
 
         this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
@@ -210,3 +212,4 @@ class Quarkboard extends EventEmitter {
 
 module.exports = new Quarkboard();
 module.exports.Plugin = Plugin;
+module.exports.Server = Server;
