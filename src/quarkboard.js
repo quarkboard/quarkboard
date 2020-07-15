@@ -23,6 +23,7 @@ class Quarkboard extends EventEmitter {
             }
         });
         this._plugins = [];
+        this.setConfig('pjson', require('../package.json'));
 
         this.on('exit', (message, code = 0) => {
             if (typeof message !== 'undefined')
@@ -148,9 +149,9 @@ class Quarkboard extends EventEmitter {
             .bindHelp()
             .parseSystem();
 
-        if (this._opts.options.version) {
-            const pjson = require('../package.json');
-            this.emit('exit', `Quarkboard v${pjson.version}`);
+        if (this.options.version !== undefined) {
+            this.emit('exit', `Quarkboard v${this.getConfig('pjson.version')}`);
+            return;
         }
 
         this._plugins.forEach((plugin) => plugin.enabled && plugin.load());
