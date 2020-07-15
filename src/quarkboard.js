@@ -90,6 +90,10 @@ class Quarkboard extends EventEmitter {
         return this._opts.options[option];
     }
 
+    getConfig(key, def) {
+        return this._config.get(key, def);
+    }
+
     /**
      * Return whether or not the {pluginType} is registered or not.
      *
@@ -104,6 +108,10 @@ class Quarkboard extends EventEmitter {
         }
 
         return false;
+    }
+
+    hasConfig(key) {
+        return this._config.has(key);
     }
 
     hasOpt(option) {
@@ -147,6 +155,11 @@ class Quarkboard extends EventEmitter {
 
         this._plugins.forEach((plugin) => plugin.enabled && plugin.load());
         this._plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
+    }
+
+    setConfig(key, value) {
+        this._config.set(key, value);
+        return this;
     }
 
     /**
