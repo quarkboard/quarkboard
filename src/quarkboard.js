@@ -118,10 +118,6 @@ class Quarkboard extends EventEmitter {
         return this._config.has(key);
     }
 
-    hasOpt(option) {
-        return typeof this._opts.options[option] !== 'undefined';
-    }
-
     run() {
         const getopt = require('node-getopt');
         const opts = this._config.get('opts');
