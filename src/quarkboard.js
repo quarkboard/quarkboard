@@ -90,6 +90,10 @@ class Quarkboard extends EventEmitter {
         return this.isVerbose && this.opts.options.verbose.length >= 2;
     }
 
+    get opts() {
+        return this._opts;
+    }
+
     getConfig(key, def) {
         return this._config.get(key, def);
     }
