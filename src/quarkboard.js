@@ -34,6 +34,11 @@ class Quarkboard extends EventEmitter {
         });
     }
 
+    /**
+     * Return a copy of the getopt options.
+     *
+     * @returns {object}
+     */
     get options() {
         return Object.assign({}, this.opts.options);
     }
@@ -92,16 +97,28 @@ class Quarkboard extends EventEmitter {
         return this.isVerbose && this.opts.options.verbose.length >= 2;
     }
 
+    /**
+     * Return an instance of getopt.
+     *
+     * @returns {*}
+     */
     get opts() {
         return this._opts;
     }
 
+    /**
+     * Return the value of {key} if it is defined, or {def} if it doesn't.
+     *
+     * @param key
+     * @param def
+     * @returns {*}
+     */
     getConfig(key, def) {
         return this._config.get(key, def);
     }
 
     /**
-     * Return whether or not the {pluginType} is registered or not.
+     * Return whether or not the {pluginType} is registered.
      *
      * @param plugin
      * @returns {boolean}
@@ -116,10 +133,19 @@ class Quarkboard extends EventEmitter {
         return false;
     }
 
+    /**
+     * Return whether or not the {key} exists in the config.
+     *
+     * @param key
+     * @returns {boolean}
+     */
     hasConfig(key) {
         return this._config.has(key);
     }
 
+    /**
+     * Run the application.
+     */
     run() {
         const getopt = require('node-getopt');
         const opts = this._config.get('opts');
@@ -160,6 +186,13 @@ class Quarkboard extends EventEmitter {
         this._plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
 
+    /**
+     * Set the value of {key} to {value} in the configuration.
+     *
+     * @param key
+     * @param value
+     * @returns {Quarkboard}
+     */
     setConfig(key, value) {
         this._config.set(key, value);
         return this;
