@@ -32,6 +32,35 @@ encapsulated in the admin panel.
 1. Run the code using `yarn run start`
     * Pass `-h` or `--help` to get the command-line help screen
 
+### Code Style
+
+1. Keep it simple; in other words, be verbose while maintaining succinct code. For example, plugins have access to the 
+   Quarkboard instance using a property called `app` and not `quarkboard`.
+1. Omit braces for one-line code blocks.
+1. Use camelCase for everything, except classes. Classes should use Pascal-case (i.e., UpperCamelCase).
+1. Use classes liberally. This is a modern framework, using modern NodeJS.
+1. Write code using Vanilla Javascript.
+1. Never use `var` when defining variables; prefer `const` unless you know you'll need to modify the variable.
+1. Document functions/methods as follows:
+    ```javascript
+    /**
+     * Describe the function or method succinctly in one line.
+     *
+     * @param {any} parameter
+     * ...
+     * @returns {something}
+     */
+    ```
+1. Use getters for accessing read-only data structures.
+1. Use setters for modifying private data structures. But, use them sparingly.
+1. Use methods when needing to accept parameters.
+1. Always use `path.join()` instead of hard-coding path delimiters.
+1. Use the Quarkboard log methods (`info`, `warn`, `error`, `debug`) instead of `console`.
+1. Use spaces instead of tabs; tabstop is 4 spaces. Sorry. Not sorry.
+1. Always use semicolons. Sorry. Not sorry.
+1. Prefer using arrow functions. Use traditional functions when needing access to `arguments` and/or `this` for that context.
+1. Alias `this` as `that` (e.g., `const that = this;`) when sharing parent context inside of a traditional function.
+
 ## Links
 
 ## Contributing Guidelines
