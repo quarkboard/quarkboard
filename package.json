@@ -18,6 +18,7 @@
   "license": "MIT",
   "main": "src/main.js",
   "name": "@quarkboard/quarkboard",
+  "private": false,
   "repository": "https://github.com/quarkboard/quarkboard.git",
   "scripts": {
     "start": "node src/main.js"
