@@ -34,6 +34,11 @@ class Quarkboard extends EventEmitter {
 
             process.exit(code)
         });
+
+        const plugins = this.getConfig('plugins', []);
+
+        plugins.forEach(plugin => this._appendPlugin(plugin));
+        this._addPlugin('@quarkboard/quarkboard-server', true, true);
     }
 
     /**
@@ -200,20 +205,9 @@ class Quarkboard extends EventEmitter {
     run() {
         const getopt = require('node-getopt');
         const opts = this._config.get('opts');
-        const plugins = this._config.get('plugins', {});
 
         // Parse any plugins provided by the command line.
-        for (const plugin of (getopt.create(opts).error(() => {}).parseSystem().options.plugin || [])) {
-            const p = plugin.split(',');
-            plugins[p[0]] = {
-                path: typeof p[1] !== 'undefined' ? path.resolve(p[1]) : p[0],
-                enabled: true,
-                core: false,
-            }
-        }
-
-        this.use(Server);
-        this._addPlugins(plugins);
+        (getopt.create(opts).error(() => {}).parseSystem().options.plugin || []).forEach(plugin => this._addPlugin(plugin));
 
         this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
@@ -269,26 +263,41 @@ class Quarkboard extends EventEmitter {
     }
 
     /**
-     * Adds given plugins from the filesystem to the plugin stack.
+     * Add the plugin {pluginName} to the plugin stack.
      *
-     * @param plugins
+     * @param {string} pluginName
+     * @param {boolean} enabled
+     * @param {boolean} core
      * @returns {Quarkboard}
      * @private
      */
-    _addPlugins(plugins) {
-        Object.keys(plugins).forEach((name) => {
-            const plugin = plugins[name];
-            const pjsonFile = path.join(plugin.path, 'package.json');
+    _addPlugin(pluginName, enabled = true, core = false) {
+        this._parsePlugin({
+            path: pluginName,
+            enabled: enabled,
+            core: core,
+        });
+        return this;
+    }
 
-            if (!fs.existsSync(pjsonFile)) {
-                throw new Error(`Could not find package.json in '${plugin.path}', or path does not exist`);
-            }
+    /**
+     * Adds given plugins from the filesystem to the plugin stack.
+     *
+     * @param plugin
+     * @returns {Quarkboard}
+     * @private
+     */
+    _parsePlugin(plugin) {
+        const pjsonFile = path.join(plugin.path, 'package.json');
 
+        try {
             const pjson = require(pjsonFile);
             const pluginClass = require(path.join(plugin.path, pjson.main));
 
             this.use(pluginClass);
-        });
+        } catch (err) {
+            throw new Error(`Could not find package.json in '${plugin.path}', or path does not exist`);
+        }
 
         return this;
     }
