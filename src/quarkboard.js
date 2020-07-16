@@ -127,6 +127,15 @@ class Quarkboard extends EventEmitter {
     }
 
     /**
+     * Return a copy of the plugins array.
+     *
+     * @returns {[]}
+     */
+    get plugins() {
+        return Array.from(this._plugins);
+    }
+
+    /**
      * Return the path to the project root.
      *
      * @returns {string}
