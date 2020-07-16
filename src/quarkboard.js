@@ -172,11 +172,9 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     has(plugin) {
-        for (const _plugin of this._plugins) {
-            if (plugin.name === _plugin.constructor.name) {
+        for (const _plugin of this._plugins)
+            if (plugin.name === _plugin.constructor.name)
                 return true;
-            }
-        }
 
         return false;
     }
