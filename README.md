@@ -15,10 +15,36 @@ large screen displays, **Quarkboard** has something for everyone.
 
 ## Links
 
+## Contributing Guidelines
+
+### Code of Conduct
+Everyone is welcome to participate in this project, regardless of age, sexual orientation, gender, race, or any other 
+social construct du jour. In other words: we do not judge people here on anything other than how they interact with 
+other people and the merits of their code. However, let us make it clear that no matter how good your code may be, if 
+you cannot be respectful of others, then there is no place for you here. Period.
+
+> Be excellent to each other, and party on...! - Bill & Ted
+
+### Contributing
+
+Open an issue to discuss the contribution. Currently there is no well-defined timeline for the project, but there is an
+idea of how things are going to be built. Over time, we hope to define project milestones, but until then it is a good 
+idea to talk things through with the project maintainers to avoid stepping on toes and/or wasting anybody's time –
+including yours!
+
+Once you are given the go-ahead on your issue, use the [standard Github forking workflow](https://guides.github.com/activities/forking/):
+
+1. Fork the code
+1. Create a branch for the work
+1. Make the changes described in your issue
+    * If you need to deviate from the described changes, please update the original issue.
+1. Add yourself as a contributor to the `package.json` `contributors` section. Yay!
+1. Make a PR using your fork and branch.
+1. Address any comments and suggestions in your code review
+1. Be prepared to maintain your code going forward
+
 ## License
 
 This project utilizes the MIT open-source software license. You can find the full-text details in the 
 [LICENSE](./LICENSE) file, and get a TL;DR summary from 
 [tldrlegal.com](https://tldrlegal.com/license/mit-license#summary).
-
-## Contributing Guidelines
