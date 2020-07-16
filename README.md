@@ -13,6 +13,12 @@ large screen displays, **Quarkboard** has something for everyone.
 
 ## Documentation
 
+### Installation
+
+TBD. The goal here would be to have as simple an installation as possible on Windows, macOS, Linux, and RaspberryPI.
+The first run of the application should not require much more than one command. Any persistent configuration should be 
+encapsulated in the admin panel.
+
 ## Links
 
 ## Contributing Guidelines
