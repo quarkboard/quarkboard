@@ -26,6 +26,7 @@ class Quarkboard extends EventEmitter {
         this._plugins = [];
         this._projectRoot = path.join(__dirname, '..');
         this._pjson = require(path.join(this._projectRoot, 'package.json'));
+        this._assetsRoot = path.join(this._projectRoot, 'assets');
 
         this.on('exit', (message, code = 0) => {
             if (typeof message !== 'undefined')
@@ -33,6 +34,15 @@ class Quarkboard extends EventEmitter {
 
             process.exit(code)
         });
+    }
+
+    /**
+     * Return the path to the assets directory.
+     *
+     * @returns {string}
+     */
+    get assetsRoot() {
+        return this._assetsRoot;
     }
 
     /**
