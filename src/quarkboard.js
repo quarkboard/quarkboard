@@ -18,6 +18,7 @@ class Quarkboard extends EventEmitter {
                     ['h',   'help',             'print this help and exit'],
                     ['p',   'plugin=PLUGIN+',   'enable the named plugin; non-standard plugins must include plugin,/path/to/plugin'],
                     ['q',   'quiet',            'quiet output; -qq and -qqq to decrease verbosity'],
+                    ['t',   'template',         'name of the template layout', 'grid'],
                     ['v',   'verbose+',         'verbose output; -vv and -vvv to increase verbosity'],
                     ['V',   'version',          'print version and exit'],
                 ],
