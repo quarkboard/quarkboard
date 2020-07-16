@@ -66,7 +66,8 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isDebug() {
-        return this.isVeryVerbose && this.options.verbose.length >= 3;
+        return this.isVeryVerbose
+            && this.options.verbose.length >= 3;
     }
 
     /**
@@ -75,7 +76,8 @@ class Quarkboard extends EventEmitter {
      * @returns {*|boolean}
      */
     get isSilent() {
-        return this.isVeryQuiet && this.options.quiet.length >= 3;
+        return this.isVeryQuiet
+            && this.options.quiet.length >= 3;
     }
 
     /**
@@ -84,7 +86,8 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isQuiet() {
-        return Array.isArray(this.options.quiet) && this.options.quiet.length >= 1;
+        return Array.isArray(this.options.quiet)
+            && this.options.quiet.length >= 1;
     }
 
     /**
@@ -93,7 +96,8 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isVerbose() {
-        return Array.isArray(this.options.verbose) && this.options.verbose.length >= 1;
+        return Array.isArray(this.options.verbose)
+            && this.options.verbose.length >= 1;
     }
 
     /**
@@ -102,7 +106,8 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean|boolean}
      */
     get isVeryQuiet() {
-        return this.isQuiet && this.opts.options.quiet.length >= 2;
+        return this.isQuiet
+            && this.opts.options.quiet.length >= 2;
     }
 
     /**
@@ -111,7 +116,8 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isVeryVerbose() {
-        return this.isVerbose && this.opts.options.verbose.length >= 2;
+        return this.isVerbose
+            && this.opts.options.verbose.length >= 2;
     }
 
     /**
@@ -208,16 +214,19 @@ class Quarkboard extends EventEmitter {
         const opts = this._config.get('opts');
 
         // Parse any plugins provided by the command line.
-        (getopt.create(opts).error(() => {}).parseSystem().options.plugin || []).forEach(plugin => this._addPlugin(plugin));
+        (getopt.create(opts).error(() => {}).parseSystem().options.plugin || [])
+            .forEach(plugin => this._addPlugin(plugin));
 
-        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => this.emit('plugin-loading', plugin, opts));
+        this.plugins.filter(plugin => plugin.enabled)
+            .forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
         const that = this;
         this._opts = getopt
             .create(opts)
             .error(function (error) {
-                console.error(`Error: ${error.message}\n`)
+                that.error(`Error: ${error.message}\n`)
                 this.showHelp();
+
                 that.emit('exit', undefined, 1);
             })
             .bindHelp()
@@ -228,8 +237,11 @@ class Quarkboard extends EventEmitter {
             return;
         }
 
-        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => plugin.load());
-        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => this.emit('plugin-loaded', plugin));
+        this.plugins.filter(plugin => plugin.enabled)
+            .forEach((plugin) => plugin.load());
+
+        this.plugins.filter(plugin => plugin.enabled)
+            .forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
 
     /**

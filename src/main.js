@@ -1,4 +1,2 @@
 const Quarkboard = require('./quarkboard');
-
-Quarkboard
-    .run();
+Quarkboard.run();
