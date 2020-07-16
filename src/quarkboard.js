@@ -217,7 +217,7 @@ class Quarkboard extends EventEmitter {
         this.use(Server);
         this._addPlugins(plugins);
 
-        this.plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
+        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
         const that = this;
         this._opts = getopt
@@ -235,8 +235,8 @@ class Quarkboard extends EventEmitter {
             return;
         }
 
-        this.plugins.forEach((plugin) => plugin.enabled && plugin.load());
-        this.plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
+        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => plugin.load());
+        this.plugins.filter(plugin => plugin.enabled).forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
 
     /**
