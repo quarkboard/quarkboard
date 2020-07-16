@@ -19,6 +19,19 @@ TBD. The goal here would be to have as simple an installation as possible on Win
 The first run of the application should not require much more than one command. Any persistent configuration should be 
 encapsulated in the admin panel.
 
+### Development
+
+1. Clone: `git clone https://github.com/quarkboard/quarkboard`
+    1. `git clone https://github.com/quarkboard/hadron`
+    1. `git clone https://github.com/quarkboard/quarkboard-plugin`
+    1. `git clone https://github.com/quarkboard/quarkboard-server`
+    1. etc.
+1. Install dependencies using `yarn install` for each project cloned
+1. Run `yarn link` in each dependency cloned, and then follow the on-screen instructions provided by yarn for linking
+   the dependencies in this main project.
+1. Run the code using `yarn run start`
+    * Pass `-h` or `--help` to get the command-line help screen
+
 ## Links
 
 ## Contributing Guidelines
