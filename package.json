@@ -10,6 +10,9 @@
   },
   "description": "Quarkboard is an open-source smart mirror framework that provides enterprise-level service for professionals and home-enthusiasts alike.",
   "devDependencies": {},
+  "engines": {
+    "node": ">=11.13.0"
+  },
   "keywords": [
     "framework",
     "quarkboard",
