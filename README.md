@@ -1,6 +1,8 @@
 # Quarkboard
 
 <p align="center">
+    <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@quarkboard/quarkboard?color=brightgreen">
+    <img alt="Libraries.io dependency status for latest release, scoped npm package" src="https://img.shields.io/librariesio/release/npm/@quarkboard/quarkboard?color=brightgreen">
     <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Backer"><img src="https://opencollective.com/quarkboard-collective/tiers/backer/badge.svg"></a>
     <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Sponsor"><img src="https://opencollective.com/quarkboard-collective/tiers/sponsor/badge.svg"></a>
     <a href="https://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
