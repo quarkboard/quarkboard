@@ -60,7 +60,7 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isDebug() {
-        return this.isVeryVerbose && this.opts.options.verbose.length >= 3;
+        return this.isVeryVerbose && this.options.verbose.length >= 3;
     }
 
     /**
@@ -69,7 +69,7 @@ class Quarkboard extends EventEmitter {
      * @returns {*|boolean}
      */
     get isSilent() {
-        return this.isVeryQuiet && this.opts.options.quiet.length >= 3;
+        return this.isVeryQuiet && this.options.quiet.length >= 3;
     }
 
     /**
@@ -78,7 +78,7 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isQuiet() {
-        return Array.isArray(this.opts.options.quiet) && this.opts.options.quiet.length >= 1;
+        return Array.isArray(this.options.quiet) && this.options.quiet.length >= 1;
     }
 
     /**
@@ -87,7 +87,7 @@ class Quarkboard extends EventEmitter {
      * @returns {boolean}
      */
     get isVerbose() {
-        return Array.isArray(this.opts.options.verbose) && this.opts.options.verbose.length >= 1;
+        return Array.isArray(this.options.verbose) && this.options.verbose.length >= 1;
     }
 
     /**
@@ -217,7 +217,7 @@ class Quarkboard extends EventEmitter {
         this.use(Server);
         this._addPlugins(plugins);
 
-        this._plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
+        this.plugins.forEach((plugin) => this.emit('plugin-loading', plugin, opts));
 
         const that = this;
         this._opts = getopt
@@ -235,8 +235,8 @@ class Quarkboard extends EventEmitter {
             return;
         }
 
-        this._plugins.forEach((plugin) => plugin.enabled && plugin.load());
-        this._plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
+        this.plugins.forEach((plugin) => plugin.enabled && plugin.load());
+        this.plugins.forEach((plugin) => this.emit('plugin-loaded', plugin));
     }
 
     /**
