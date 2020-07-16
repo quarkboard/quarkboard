@@ -1,12 +1,17 @@
 # Quarkboard
 
 <p align="center">
-    <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@quarkboard/quarkboard?color=brightgreen">
-    <img alt="node-current (scoped)" src="https://img.shields.io/node/v/@quarkboard/quarkboard">
-    <img alt="Libraries.io dependency status for latest release, scoped npm package" src="https://img.shields.io/librariesio/release/npm/@quarkboard/quarkboard?color=brightgreen">
-    <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Backer"><img src="https://opencollective.com/quarkboard-collective/tiers/backer/badge.svg"></a>
-    <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Sponsor"><img src="https://opencollective.com/quarkboard-collective/tiers/sponsor/badge.svg"></a>
-    <a href="https://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+    <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@quarkboard/quarkboard?color=blue">
+    <img alt="node-current (scoped)" src="https://img.shields.io/node/v/@quarkboard/quarkboard?color=blue">
+    <img alt="Libraries.io dependency status for latest release, scoped npm package" src="https://img.shields.io/librariesio/release/npm/@quarkboard/quarkboard?color=blue">
+    <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Backer"><img alt="Open Collective backers" src="https://img.shields.io/opencollective/backers/quarkboard-collective?color=green"></a>
+    <a href="https://opencollective.com/quarkboard-collective" title="Quarkboard Collective Sponsor"><img alt="Open Collective sponsors" src="https://img.shields.io/opencollective/sponsors/quarkboard-collective?color=green"></a>
+    <img alt="GitHub" src="https://img.shields.io/github/license/quarkboard/quarkboard?color=blue">
+</p>
+<p align="center">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/quarkboard/quarkboard?color=blue">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/quarkboard/quarkboard?color=blue">
+    <img alt="GitHub package.json dynamic" src="https://img.shields.io/github/package-json/keywords/quarkboard/quarkboard?color=blue">
 </p>
 
 **Quarkboard** is an open-source screen display framework that provides enterprise-level service for professionals and 
