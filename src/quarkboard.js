@@ -31,7 +31,7 @@ class Quarkboard extends EventEmitter {
 
         this.on('exit', (message, code = 0) => {
             if (typeof message !== 'undefined')
-                console.log(message);
+                this.info(message);
 
             process.exit(code)
         });
