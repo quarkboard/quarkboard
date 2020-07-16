@@ -24,7 +24,8 @@ class Quarkboard extends EventEmitter {
             }
         });
         this._plugins = [];
-        this.setConfig('pjson', require('../package.json'));
+        this._projectRoot = path.join(__dirname, '..');
+        this._pjson = require(path.join(this._projectRoot, 'package.json'));
 
         this.on('exit', (message, code = 0) => {
             if (typeof message !== 'undefined')
@@ -104,6 +105,24 @@ class Quarkboard extends EventEmitter {
      */
     get opts() {
         return this._opts;
+    }
+
+    /**
+     * Return the JSON structure of the package.json.
+     *
+     * @returns {object}
+     */
+    get packageJson() {
+        return this._pjson;
+    }
+
+    /**
+     * Return the path to the project root.
+     *
+     * @returns {string}
+     */
+    get projectRoot() {
+        return this._projectRoot;
     }
 
     debug(message, ...args) {
@@ -193,7 +212,7 @@ class Quarkboard extends EventEmitter {
             .parseSystem();
 
         if (this.options.version !== undefined) {
-            this.emit('exit', `Quarkboard v${this.getConfig('pjson.version')}`);
+            this.emit('exit', `Quarkboard v${this.packageJson.version}`);
             return;
         }
 
