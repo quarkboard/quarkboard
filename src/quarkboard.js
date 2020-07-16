@@ -156,11 +156,23 @@ class Quarkboard extends EventEmitter {
         return this._projectRoot;
     }
 
+    /**
+     * Log a debug message to the console.
+     *
+     * @param message
+     * @param args
+     */
     debug(message, ...args) {
         if (this.isDebug)
             console.debug(message, ...args);
     }
 
+    /**
+     * Log an error message to the console.
+     *
+     * @param message
+     * @param args
+     */
     error(message, ...args) {
         if (!this.isVeryQuiet)
             console.error(message, ...args);
@@ -201,6 +213,12 @@ class Quarkboard extends EventEmitter {
         return this._config.has(key);
     }
 
+    /**
+     * Log an info message to the console.
+     *
+     * @param message
+     * @param args
+     */
     info(message, ...args) {
         if (!this.isQuiet)
             console.info(message, ...args);
