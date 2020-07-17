@@ -323,9 +323,16 @@ class Quarkboard extends EventEmitter {
 
         try {
             const pjson = require(pjsonFile);
+            const resolvedPath = require.resolve(plugin.path);
             const pluginClass = require(path.join(plugin.path, pjson.main));
 
-            this.use(pluginClass);
+            this.use(pluginClass, {
+                core: plugin.core,
+                enabled: plugin.enabled,
+                pluginRoot: resolvedPath.substring(0, resolvedPath.indexOf(pjson.main)),
+                pluginName: path.basename(resolvedPath.substring(0, resolvedPath.indexOf(pjson.main))),
+                pjson: pjson,
+            });
         } catch (err) {
             throw new Error(`Could not find package.json in '${plugin.path}', or path does not exist`);
         }
